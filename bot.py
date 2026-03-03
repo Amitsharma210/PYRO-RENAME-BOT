@@ -26,9 +26,11 @@ class Bot(Client):
         self.username = me.username  
         self.uptime = Config.BOT_UPTIME     
         if Config.WEB_SUPPORT:
-            app = web.AppRunner(web.Application(client_max_size=30000000))
-            await app.setup()
-            await web.TCPSite(app, "0.0.0.0", 8080).start()
+    port = int(os.environ.get("PORT", 8000))
+    app = web.Application(client_max_size=30000000)
+    runner = web.AppRunner(app)
+    await runner.setup()
+    await web.TCPSite(runner, "0.0.0.0", port).start()
             
         print(f"\033[1;96m @{me.username} Sᴛᴀʀᴛᴇᴅ......⚡️⚡️⚡️\033[0m")
         try: [await self.send_message(id, f"**__{me.first_name}  Iꜱ Sᴛᴀʀᴛᴇᴅ.....✨️__**") for id in Config.ADMIN]                              
