@@ -14,10 +14,15 @@ class Bot(Client):
             api_id=Config.API_ID,
             api_hash=Config.API_HASH,
             bot_token=Config.BOT_TOKEN,
-            workers=min(32, os.cpu_count() + 4),
+
+            # 🔥 Optimized for Koyeb Free (512MB RAM)
+            workers=4,
+
             plugins={"root": "plugins"},
             sleep_threshold=15,
-            max_concurrent_transmissions=Config.MAX_CONCURRENT_TRANSMISSIONS,
+
+            # 🔥 Keep only 1 transmission for stability
+            max_concurrent_transmissions=1,
         )
 
     async def start(self):
