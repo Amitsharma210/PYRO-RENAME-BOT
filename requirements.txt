@@ -1,4 +1,4 @@
-pyrogram==2.0.107
+pyrogram==2.0.106
 TgCrypto==1.2.5
 pyropatch==2.1
 motor==3.5.1
